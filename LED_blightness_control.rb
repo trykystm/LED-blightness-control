@@ -1,9 +1,9 @@
-require './MCP4821'
-require './mcp3002read2'
+require './mcp4821'
+require './mcp3002'
 
 class LEDBlightnessControl
-  mcp4821 = MCP4821.new MCP4821::CE1
-  mcp3002 = MCP3002.new MCP3002::CE0
+  mcp4821 = MCP4821.new PiPiper::Spi::CHIP_SELECT_1
+  mcp3002 = MCP3002.new PiPiper::Spi::CHIP_SELECT_0
   loop do
     begin
       dac = (mcp3002.single * 1.442 + 2620).to_i
